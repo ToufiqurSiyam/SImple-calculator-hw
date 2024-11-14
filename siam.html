@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Cute Calculator</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f0f8ff;
+            /* Off-white light background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+            color: #333;
+        }
+
+        .calculator {
+            width: 300px;
+            background-color: #ffffff;
+            /* White background for the calculator */
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        #display {
+            background-color: #e0f7fa;
+            /* Light cyan color */
+            height: 60px;
+            font-size: 28px;
+            border-radius: 12px;
+            text-align: right;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn {
+            font-size: 22px;
+            font-weight: bold;
+            height: 60px;
+            width: 60px;
+            margin: 5px;
+            border-radius: 50%;
+            transition: transform 0.2s ease;
+        }
+
+        .btn-number {
+            background-color: #b2dfdb;
+            /* Light teal */
+            color: #333;
+        }
+
+        .btn-number:hover {
+            background-color: #80cbc4;
+            /* Slightly darker teal */
+            transform: scale(1.1);
+        }
+
+        .btn-operator {
+            background-color: #c8e6c9;
+            /* Light green */
+            color: #333;
+        }
+
+        .btn-operator:hover {
+            background-color: #a5d6a7;
+            /* Slightly darker green */
+            transform: scale(1.1);
+        }
+
+        .btn-equal {
+            background-color: #b3e5fc;
+            /* Light blue */
+            color: #333;
+        }
+
+        .btn-equal:hover {
+            background-color: #81d4fa;
+            /* Slightly darker blue */
+            transform: scale(1.1);
+        }
+
+        .btn-clear {
+            background-color: #e1f5fe;
+            /* Very light blue */
+            color: #333;
+            width: 100%;
+            height: 60px;
+            border-radius: 12px;
+            font-size: 22px;
+            margin-top: 10px;
+        }
+
+        .btn-clear:hover {
+            background-color: #bbdefb;
+            /* Light blue */
+            transform: scale(1.05);
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="calculator">
+        <div id="display">0</div>
+        <div class="row">
+            <button onclick="appendToDisplay('7')" class="btn btn-number">7</button>
+            <button onclick="appendToDisplay('8')" class="btn btn-number">8</button>
+            <button onclick="appendToDisplay('9')" class="btn btn-number">9</button>
+            <button onclick="appendToDisplay('/')" class="btn btn-operator">÷</button>
+        </div>
+        <div class="row">
+            <button onclick="appendToDisplay('4')" class="btn btn-number">4</button>
+            <button onclick="appendToDisplay('5')" class="btn btn-number">5</button>
+            <button onclick="appendToDisplay('6')" class="btn btn-number">6</button>
+            <button onclick="appendToDisplay('*')" class="btn btn-operator">×</button>
+        </div>
+        <div class="row">
+            <button onclick="appendToDisplay('1')" class="btn btn-number">1</button>
+            <button onclick="appendToDisplay('2')" class="btn btn-number">2</button>
+            <button onclick="appendToDisplay('3')" class="btn btn-number">3</button>
+            <button onclick="appendToDisplay('-')" class="btn btn-operator">−</button>
+        </div>
+        <div class="row">
+            <button onclick="appendToDisplay('0')" class="btn btn-number">0</button>
+            <button onclick="appendToDisplay('.')" class="btn btn-number">.</button>
+            <button onclick="calculate()" class="btn btn-equal">=</button>
+            <button onclick="appendToDisplay('+')" class="btn btn-operator">+</button>
+        </div>
+        <button onclick="clearDisplay()" class="btn btn-clear">Clear</button>
+    </div>
+
+    <script>
+        function appendToDisplay(value) {
+            var display = document.getElementById("display");
+            if (display.innerHTML === "0") {
+                display.innerHTML = value;
+            } else {
+                display.innerHTML += value;
+            }
+        }
+        function clearDisplay() {
+            document.getElementById("display").innerHTML = "0";
+        }
+        function calculate() {
+            var display = document.getElementById("display");
+            try {
+                display.innerHTML = eval(display.innerHTML);
+            } catch {
+                display.innerHTML = "Error";
+            }
+        }
+    </script>
+</body>
+
+</html>
